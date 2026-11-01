@@ -31,8 +31,8 @@ public class Meta90Dias {
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) {this.nombre = nombre; }
 
-    public String getDescription() { return descripcion; }
-    public void setDescription(String description) { this.descripcion = description; }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
     public LocalDate getFechaInicio() { return fechaInicio = fechaInicio; }
     public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio; }

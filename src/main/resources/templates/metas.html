@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doo's Focus</title>
+    <style>
+        body { font-family: sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem;
+            background: #14161a; color: #e8e8e8; }
+        h1 { margin-bottom: 0.2rem; }
+        form, .meta { background: #1e2127; padding: 1rem; border-radius: 8px; margin-top: 1rem; }
+        label { display: block; margin-top: 0.6rem; font-size: 0.9rem; color: #aab; }
+        input, textarea { width: 100%; padding: 0.5rem; margin-top: 0.2rem; box-sizing: border-box;
+            background: #14161a; color: #e8e8e8; border: 1px solid #333; border-radius: 4px;
+
+        button { margin-top: 1rem; padding: 0.6rem 1.2rem; border: 0; border-radius: 4px;
+            background: #4f8cff; color: white; cursor: pointer; }
+            small { color: #99a; }}
+    </style>
+</head>
+<body>
+    <h1>Doo's Focus</h1>
+    <small>Tus Metas</small>
+
+    <form th:action="@{/metas}" th:object="${nuevaMeta}" method="post">
+        <label>Nombre <input type="text" th:field="*{nombre}" required></label>
+        <label>Área <input type="text" th:field="*{area}" placeholder="código, salud, estudios..."></label>
+        <label>Descripción <textarea th:field="*{descripcion}" rows="2"></textarea></label>
+        <label>Prueba diaria de 1% mejor <input type="text" th:field="*{pruebaDiaria}"></label>
+        <label>Fecha de inicio <input type="date" th:field="*{fechaInicio}" required></label>
+        <button type="submit">Crear meta</button>
+    </form>
+
+    <div class="meta" th:each="m : ${metas}">
+        <strong th:text="${m.nombre}">Nombre</strong>
+        <small th:text="${m.area}"> área</small>
+        <p th:text="${m.descripcion}">Descripción</p>
+        <small>Prueba diaria: <span th:text="${m.pruebaDiaria}"></span></small><br>
+        <small>Del <span th:text="${m.fechaInicio}"></span> al <span th:text="${m.fechaFin}"></span></small>
+    </div>
+
+    <p th:if="${#lists.isEmpty(metas)}"><small>Todavía no hay metas. Crea la primera arriba.</small></p>
+</body>
+</html>
