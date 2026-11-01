@@ -13,7 +13,7 @@ public class Meta90Dias {
     private String nombre;
 
     @Column(length = 1000)
-    private String description;
+    private String descripcion;
 
     private LocalDate fechaInicio;
 
@@ -31,8 +31,8 @@ public class Meta90Dias {
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) {this.nombre = nombre; }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getDescription() { return descripcion; }
+    public void setDescription(String description) { this.descripcion = description; }
 
     public LocalDate getFechaInicio() { return fechaInicio = fechaInicio; }
     public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio; }
