@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bloque diario | Doo's Focus</title>
+    <style>
+        body { font-family: sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem;
+            background: #14161a; color: #e8e8e8; }
+        form, .dia { background: #1e2127; padding: 1rem; border-radius: 8px; margin-top: 1rem; }
+        label { display: block; margin-top: 0.6rem; font-size: 0.9rem; color: #aab; }
+        input, textarea { width: 100%; padding: 0.5rem; margin-top: 0.2rem; box-sizing: border-box;
+            background: #14161a; color: #e8e8e8; border: 1px solid #333; border-radius: 4px; }
+        input[type=checkbox] { width: auto; margin-right: 0.5rem; }
+        button { margin-top: 1rem; padding: 0.6rem 1.2rem; border: 0; border-radius: 4px;
+            background: #4f8cff; color: white; cursor: pointer; }
+        a { color: #4f8cff; }
+        small { color: #99a; }
+    </style>
+</head>
+<body>
+<a th:href="@{/metas}">← Volver a las metas</a>
+<h1 th:text="${meta.nombre}">Meta</h1>
+<small>Prueba diaria de 1% mejor: <span th:text="${meta.pruebaDiaria}"></span></small><br>
+<small>Días cumplidos: <strong th:text="${cumplidos}">0</strong>
+    de <span th:text="${#lists.size(dias)}">0</span> registrados</small>
+
+<form th:action="@{/metas/{id}/dias(id=${meta.id})}" th:object="${nuevoDia}" method="post">
+    <label>Fecha <input type="date" th:field="*{fecha}" required></label>
+    <label><input type="checkbox" th:field="*{cumplido}"> Cumplí el bloque del día</label>
+    <label><input type="checkbox" th:field="*{pruebaDelDia}"> Hice la prueba de 1% mejor</label>
+    <label>Nota o principal obstáculo <textarea th:field="*{nota}" rows="2"></textarea></label>
+    <button type="submit">Registrar día</button>
+</form>
+
+<div class="dia" th:each="d : ${dias}">
+    <strong th:text="${d.fecha}">2026-11-01</strong>
+    <span th:text="${d.cumplido} ? '✔ Bloque cumplido' : '✘ Bloque no cumplido'"></span><br>
+    <small th:text="${d.pruebaDelDia} ? '✔ Prueba del 1% hecha' : '✘ Sin prueba del 1%'"></small>
+    <p th:text="${d.nota}"></p>
+</div>
+
+<p th:if="${#lists.isEmpty(dias)}"><small>Todavía no registraste ningún día.</small></p>
+</body>
+</html>

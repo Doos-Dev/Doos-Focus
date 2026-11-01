@@ -10,11 +10,11 @@
         form, .meta { background: #1e2127; padding: 1rem; border-radius: 8px; margin-top: 1rem; }
         label { display: block; margin-top: 0.6rem; font-size: 0.9rem; color: #aab; }
         input, textarea { width: 100%; padding: 0.5rem; margin-top: 0.2rem; box-sizing: border-box;
-            background: #14161a; color: #e8e8e8; border: 1px solid #333; border-radius: 4px;
-
+            background: #14161a; color: #e8e8e8; border: 1px solid #333; border-radius: 4px; }
         button { margin-top: 1rem; padding: 0.6rem 1.2rem; border: 0; border-radius: 4px;
             background: #4f8cff; color: white; cursor: pointer; }
-            small { color: #99a; }}
+        a { color: #4f8cff; }
+        small { color: #99a; }
     </style>
 </head>
 <body>
@@ -35,7 +35,8 @@
         <small th:text="${m.area}"> área</small>
         <p th:text="${m.descripcion}">Descripción</p>
         <small>Prueba diaria: <span th:text="${m.pruebaDiaria}"></span></small><br>
-        <small>Del <span th:text="${m.fechaInicio}"></span> al <span th:text="${m.fechaFin}"></span></small>
+        <small>Del <span th:text="${m.fechaInicio}"></span> al <span th:text="${m.fechaFin}"></span></small><br>
+        <a th:href="@{/metas/{id}/dias(id=${m.id})}">Registrar días →</a>
     </div>
 
     <p th:if="${#lists.isEmpty(metas)}"><small>Todavía no hay metas. Crea la primera arriba.</small></p>
