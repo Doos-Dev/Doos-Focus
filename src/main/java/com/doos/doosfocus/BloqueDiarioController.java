@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -39,7 +40,12 @@ public class BloqueDiarioController {
 
     @PostMapping("/metas/{metaId}/dias")
     public String crear(@PathVariable("metaId") Long metaId,
-                        @ModelAttribute("nuevoDia") BloqueDiario dia) {
+                        @ModelAttribute("nuevoDia") BloqueDiario dia,
+                        RedirectAttributes redirect) {
+        if (bloqueRepository.existsByMetaIdAndFecha(metaId, dia.getFecha())) {
+            redirect.addFlashAttribute("error", "Ya registraste ese día. Elige otra fecha.");
+            return "redirect:/metas/" + metaId + "/dias";
+        }
         Meta90Dias meta = metaRepository.findById(metaId).orElseThrow();
         dia.setMeta(meta);
         bloqueRepository.save(dia);

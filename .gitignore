@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -31,4 +31,23 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Secretos y claves ###
+.env
+.env.*
+*.env
+application-local.properties
+application-secret*.properties
+*.pem
+*.key
+*.p12
+*.jks
+
+### Base de datos local ###
 data/
+*.mv.db
+*.trace.db
+
+### Logs ###
+*.log
+logs/

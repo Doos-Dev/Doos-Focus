@@ -24,6 +24,8 @@
 <small>Días cumplidos: <strong th:text="${cumplidos}">0</strong>
     de <span th:text="${#lists.size(dias)}">0</span> registrados</small>
 
+<p th:if="${error}" th:text="${error}" style="color: #ff6b6b; margin-top: 1rem;"></p>
+
 <form th:action="@{/metas/{id}/dias(id=${meta.id})}" th:object="${nuevoDia}" method="post">
     <label>Fecha <input type="date" th:field="*{fecha}" required></label>
     <label><input type="checkbox" th:field="*{cumplido}"> Cumplí el bloque del día</label>
